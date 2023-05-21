@@ -5,12 +5,12 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/coach'
+      redirect: '/coaches'
     },
     {
       path: '/coaches',
       name: 'coaches',
-      component: () => import('../views/coaches/CoachList')
+      component: () => import('../views/coaches/CoachList.vue')
     },
     {
       path: '/coach/:id',
@@ -20,7 +20,7 @@ const router = createRouter({
         {
           path: '/contact',
           name: 'contact',
-          component: () => import('../views/requests/ContactCoach')
+          component: () => import('../views/requests/ContactCoach.vue')
         }
       ]
     },
