@@ -10,26 +10,33 @@ const router = createRouter({
     {
       path: '/coaches',
       name: 'coaches',
-      component: null
+      component: () => import('../views/coaches/CoachList')
     },
     {
       path: '/coach/:id',
       name: 'coach',
-      component: null
+      component: () => import('../views/coaches/CoachDetails.vue'),
+      children: [
+        {
+          path: '/contact',
+          name: 'contact',
+          component: () => import('../views/requests/ContactCoach')
+        }
+      ]
     },
     {
       path: '/register',
       name: 'register',
-      component: null
+      component: () => import('../views/coaches/CoachRegister.vue')
     },
     {
       path: '/requests',
       name: 'requests',
-      component: null
+      component: () => import('../views/requests/RequestsRecieved.vue')
     },
     {
       path: '/:notFound(.*)',
-      component: null
+      component: () => import('../views/NotFound.vue')
     }
   ]
 })
