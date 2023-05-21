@@ -13,12 +13,12 @@ const router = createRouter({
       component: () => import('../views/coaches/CoachList.vue')
     },
     {
-      path: '/coach/:id',
+      path: '/coaches/:id',
       name: 'coach',
       component: () => import('../views/coaches/CoachDetails.vue'),
       children: [
         {
-          path: '/contact',
+          path: 'contact',
           name: 'contact',
           component: () => import('../views/requests/ContactCoach.vue')
         }
