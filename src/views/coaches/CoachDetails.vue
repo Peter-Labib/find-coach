@@ -1,4 +1,63 @@
 <template>
-    <RouterLink to="/coaches/id/contact"> to coach contact</RouterLink>
-    <RouterView />
+  <section>
+    <BaseCard>
+      <h2>{{ fullName }}</h2>
+      <h3>{{ rate }} /hour</h3>
+    </BaseCard>
+  </section>
+  <section>
+    <BaseCard>
+      <header>
+        <h2>Interested? Reach out now!</h2>
+        <BaseBtn
+          link
+          :to="coachContactLink"
+          >Contact</BaseBtn
+        >
+      </header>
+      <RouterView />
+    </BaseCard>
+  </section>
+  <section>
+    <BaseCard>
+      <BaseBadge
+        v-for="area in areas"
+        :key="area"
+        :type="area"
+        :title="area"
+      />
+      <p>{{ description }}</p>
+    </BaseCard>
+  </section>
 </template>
+
+<script>
+export default {
+  props: ['id'],
+  data() {
+    return {
+      selectedCoach: null
+    }
+  },
+  computed:{
+    fullName() {
+      return `${this.selectedCoach.firstName} ${this.selectedCoach.lastName}`
+    },
+    coachContactLink() {
+      return `${this.$route.path}/contact`
+    },
+    areas() {
+        return this.selectedCoach.areas
+    },
+    rate() {
+        return this.selectedCoach.hourlyRate
+    },
+    description() {
+        return this.selectedCoach.description
+    }
+  },
+  created() {
+    this.selectedCoach = this.$store.getters['coaches/coachesList'].find(coach=> coach.id == this.id)
+  }
+}
+</script>
