@@ -1,32 +1,34 @@
 <template>
   <section>Filter</section>
-  <section>
-    <div class="controls">
-      <button>Refresh</button>
-      <RouterLink to="/register">Register as Coach</RouterLink>
-    </div>
-    <ul v-if="hasCoaches">
-      <CoachItem
-        v-for="coach in filterdCoaches"
-        :key="coach.id"
-        :id="coach.id"
-        :firstName="coach.firstName"
-        :lastName="coach.lastName"
-        :areas="coach.areas"
-        :description="coach.description"
-        :rate="coach.hourlyRate"
-      >
-        {{ coach.firstName }}
-      </CoachItem>
-    </ul>
-    <h3 v-else>has no coaches</h3>
-  </section>
+  <BaseCard>
+    <section>
+      <div class="controls">
+        <BaseBtn mode="outline">Refresh</BaseBtn>
+        <BaseBtn link to="/register">Register as Coach</BaseBtn>
+      </div>
+      <ul v-if="hasCoaches">
+        <CoachItem
+          v-for="coach in filterdCoaches"
+          :key="coach.id"
+          :id="coach.id"
+          :firstName="coach.firstName"
+          :lastName="coach.lastName"
+          :areas="coach.areas"
+          :description="coach.description"
+          :rate="coach.hourlyRate"
+        >
+          {{ coach.firstName }}
+        </CoachItem>
+      </ul>
+      <h3 v-else>has no coaches</h3>
+    </section>
+  </BaseCard>
 </template>
 
 <script>
-  import CoachItem from '../../components/coaches/CoachItem.vue';
+import CoachItem from '../../components/coaches/CoachItem.vue'
 export default {
-  components:{
+  components: {
     CoachItem
   },
   computed: {
